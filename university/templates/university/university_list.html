@@ -1,0 +1,58 @@
+{% extends 'university/base.html' %}
+
+{% block content %}
+    <h1 class="my-4">
+        <small>University List</small>
+    </h1>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-success" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+    <div class="row">
+    {% if object_list %}
+        <div class="col-12" style="overflow-x: scroll">
+            <table class="table">
+              <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Img url</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Telephone</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Website</th>
+                    <th scope="col">View</th>
+                    <th scope="col">Delete</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for university in object_list %}
+                <tr>
+                    <td>{{ university.name }}</td>
+                    <td>{{ university.description }}</td>
+                    <td>{{ university.price }}</td>
+                    <td>{{ university.image_url }}</td>
+                    <td>{{ university.address }}</td>
+                    <td>{{ university.telephone }}</td>
+                    <td>{{ university.email }}</td>
+                    <td>{{ university.website }}</td>
+                    <td><a href="{% url 'university_view' university.id %}"><button type="button" class="btn btn-outline-primary btn-sm">View</button></a></td>
+                    <td><a href="{% url 'university_delete' university.id %}"><button type="button" class="btn btn-outline-danger btn-sm">Delete</button></a></td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+        </div>
+    {% else %}
+    <div class="col-12">
+        <div class="alert alert-warning" role="alert">
+            There is no university, yet. But if you want, you can add from <a class="badge badge-info" href="{% url 'university_new' %}"><strong>here.</strong></a>
+        </div>
+    </div>
+    {% endif %}
+    </div>
+{% endblock %}

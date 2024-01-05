@@ -1,0 +1,28 @@
+{% extends 'university/base.html' %}
+
+{% block content %}
+    <h1 class="my-4">Detail -
+        <small>{{ object.name }}</small>
+    </h1>
+    <div class="row">
+        <div class="col-12">
+            <ul class="list-group">
+              <li class="list-group-item"><strong>Name:</strong> {{ object.name }}</li>
+              <li class="list-group-item"><strong>Description:</strong> {{ object.description }}</li>
+              <li class="list-group-item"><strong>Price:</strong> {{ object.price }}</li>
+                <li class="list-group-item"><strong>image:</strong> {{ object.image_url }}</li>
+                <li class="list-group-item"><strong>image:</strong> {{ object.address }}</li>
+                <li class="list-group-item"><strong>image:</strong> {{ object.telephone }}</li>
+                <li class="list-group-item"><strong>image:</strong> {{ object.email }}</li>
+                <li class="list-group-item"><strong>image:</strong> {{ object.website }}</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row top-buffer">
+        <div class="col-12">
+                <a href="{% url 'university_edit' object.id %}"><button type="button" class="btn btn-success">Edit</button></a>
+                <a href="{% url 'university_list' %}"><button type="button" class="btn btn-secondary">Back</button></a>
+        </div>
+    </div>
+{% endblock %}

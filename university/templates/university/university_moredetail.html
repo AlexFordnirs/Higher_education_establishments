@@ -1,0 +1,41 @@
+{% extends 'university/base.html' %}
+
+{% block content %}
+<div class="university-detail-page">
+    <div class="university-images">
+        {% for image_url in object.image_urls %}
+            <img src="{{ image_url }}" alt="University Image">
+        {% endfor %}
+    </div>
+
+    <div class="university-info">
+        <img class="card-img-top" src="{{ university.image_url }}" alt="{{ university.name }}">
+        <h2>{{ object.name }}</h2>
+        <p><strong>Адреса:</strong> {{ object.address }}</p>
+        <p><strong>Телефон:</strong> {{ object.telephone }}</p>
+        <p><strong>Email:</strong> {{ object.email }}</p>
+        <p><strong>Вебсайт:</strong> <a href="{{ object.website_url }}">{{ object.website }}</a></p>
+    </div>
+
+    <div class="university-stats">
+        <div class="admin">
+            <h3>Адміністрація</h3>
+            <p>{{ object.administration }}</p>
+        </div>
+        <div class="specialties">
+            <h3>Спеціальності</h3>
+
+            <ul>
+                {% for specialty in object.specialties %}
+                    <li>{{ specialty }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <div class="university-actions">
+        <a  class="btn btn-primary">Поставити запитання університету</a>
+    </div>
+</div>
+
+{% endblock %}

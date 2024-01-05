@@ -1,0 +1,33 @@
+{% extends 'university/base.html' %}
+
+{% block content %}
+<div class="mt-3 mb-3">
+    <h1 class="text-center">Університети міста Дніпро</h1>
+</div>
+
+<section class="institution-section row">
+    {% for university in object_list %}
+    <div class="institution col-md-4 mb-4">
+        <div class="card">
+            {% if university.image_url %}
+            <img class="card-img-top" src="{{ university.image_url }}" alt="{{ university.name }}">
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title">{{ university.name }}</h5>
+                <p class="card-text">{{ university.description }}</p>
+                <p class="card-text"><small class="text-muted">Доданий {{ university.created|date:"d M Y" }}</small></p>
+                <a href="{% url 'university_moredetail' university.pk %}" class="btn btn-primary">Детальніш</a>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <div class="col-12">
+        <p class="text-center">Немає даних для відображення.</p>
+    </div>
+    {% endfor %}
+</section>
+
+<div class="text-center">
+    <a href="{% url 'university_list' %}" class="btn btn-secondary mt-4">Переглянути всі університети</a>
+</div>
+{% endblock %}
